@@ -26,8 +26,8 @@ var app = {
     // Bind any events that are required on startup. Common events are:
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
         this.map=null;
+        this.positionmarker=null;
         var that=this;
         $(document).on('pageinit', '#mappage', function(){
             that.map = L.map('map');
@@ -39,19 +39,37 @@ var app = {
             }).addTo(that.map);
             that.map.setView([49.469930,8.481660],13);
         });
+        $(document).on('click','#locatebtn',function(e){
+            that.locate();
+        });
         $(document).on('pageshow', '#mappage', function(){
 
             that.map.invalidateSize();
-            window.setTimeout(function(){that.map.invalidateSize()},2000)
+            window.setTimeout(function(){that.map.invalidateSize()},2000);
+            //that.locate();
         });
 
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-        $('#one').find('h2').text('DEVICE READY');
+    locate:function(){
+        var that=this;
+        var onSuccess = function(position) {
+            if(that.positionmarker === null){
+                that.positionmarker = new L.marker([position.coords.latitude,position.coords.longitude]);
+                that.positionmarker.addTo(that.map);
+            }else{
+                that.positionmarker.setLatLng([position.coords.latitude,position.coords.longitude]);
+            }
+            that.map.setView([position.coords.latitude,position.coords.longitude],15);
+        };
+
+        // onError Callback receives a PositionError object
+        //
+        function onError(error) {
+            alert('code: '    + error.code    + '\n' +
+            'message: ' + error.message + '\n');
+        }
+
+        navigator.geolocation.getCurrentPosition(onSuccess, onError);
     }
     
 };
