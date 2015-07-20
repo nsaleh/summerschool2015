@@ -78,6 +78,7 @@ var app = {
         //capture element nur sichtbar wenn alle pages versteckt
         $('#mappage').removeClass('ui-page-active');
         navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
             destinationType: Camera.DestinationType.DATA_URL,
             targetHeight: 500,
             targetWidth: 500
