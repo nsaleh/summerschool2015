@@ -48,6 +48,9 @@ var app = {
             window.setTimeout(function(){that.map.invalidateSize()},2000);
             //that.locate();
         });
+        $(document).on('click','#takepicture',function(e){
+            that.takepicture();
+        });
 
     },
     locate:function(){
@@ -70,6 +73,29 @@ var app = {
         }
 
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    },
+    takepicture: function(){
+        //capture element nur sichtbar wenn alle pages versteckt
+        $('#mappage').removeClass('ui-page-active');
+        navigator.camera.getPicture(onSuccess, onFail, { quality: 50,
+            destinationType: Camera.DestinationType.DATA_URL,
+            targetHeight: 500,
+            targetWidth: 500
+        });
+
+        function onSuccess(imageData) {
+            var image = document.getElementById('userpic');
+            image.src = "data:image/jpeg;base64," + imageData;
+            //page wiederherstellen
+            $('#mappage').addClass('ui-page-active');
+            $.mobile.changePage('#bildpage');
+        }
+
+        function onFail(message) {
+            //page wiederherstellen
+            $('#mappage').addClass('ui-page-active');
+            alert('Failed because: ' + message);
+        }
     }
     
 };

@@ -1,24 +1,7 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
+        <meta charset="utf-8">
       <!-- Enable all requests, inline styles, and eval() -->
         <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
 
@@ -48,7 +31,8 @@
 	<div data-role="footer" data-theme="a" data-position="fixed">
 		<div data-role="navbar">
             <ul>
-                <li><a href="#" id="locatebtn">Position ermitteln.</a></li>
+                <li><a href="#" id="locatebtn">Position ermitteln</a></li>
+                <li><a href="#" id="takepicture">Bild aufnehmen</a></li>
             </ul>
         </div>
 	</div><!-- /footer -->
@@ -75,16 +59,16 @@
 </div><!-- /page two -->
 
 <!-- Start of third page: #popup -->
-<div data-role="page" id="popup">
+<div data-role="page" id="bildpage">
 
 	<div data-role="header" data-theme="b">
-		<h1>Dialog</h1>
+		<h1>Bild</h1>
 	</div><!-- /header -->
 
 	<div role="main" class="ui-content">
-		<h2>Popup</h2>
-		<p>I have an id of "popup" on my page container and only look like a dialog because the link to me had a <code>data-rel="dialog"</code> attribute which gives me this inset look and a <code>data-transition="pop"</code> attribute to change the transition to pop. Without this, I'd be styled as a normal page.</p>
-		<p><a href="#one" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left">Back to page "one"</a></p>
+		<h2>Aufnahme</h2>
+		<p><img src="" alt="" id="userpic"/></p>
+		<p><a href="#mappage" data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-btn-inline ui-icon-back ui-btn-icon-left">Zurück</a></p>
 	</div><!-- /content -->
 
 	<div data-role="footer">

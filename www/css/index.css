@@ -126,3 +126,6 @@ h1 {
 #map {
     height: 100%;
 }
+#userpic{
+    max-width: 100%;
+}
