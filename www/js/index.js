@@ -27,6 +27,24 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+        this.map=null;
+        var that=this;
+        $(document).on('pageinit', '#mappage', function(){
+            that.map = L.map('map');
+
+            L.tileLayer.wms('http://map.iib-institut.de/mapproxy/service?', {
+                layers: 'iibmap',
+                format: 'image/png',
+                maxZoom: 16
+            }).addTo(that.map);
+            that.map.setView([49.469930,8.481660],13);
+        });
+        $(document).on('pageshow', '#mappage', function(){
+
+            that.map.invalidateSize();
+            window.setTimeout(function(){that.map.invalidateSize()},2000)
+        });
+
     },
     // deviceready Event Handler
     //

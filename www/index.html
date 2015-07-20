@@ -19,48 +19,33 @@
 -->
 <html>
     <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+      <!-- Enable all requests, inline styles, and eval() -->
+        <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'">
+
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
 
 	<link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="leaflet-0.7.3/leaflet.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
 	
         <title>Hello World</title>
     </head>
     <body>
         <!-- Start of first page: #one -->
-<div data-role="page" id="one">
+<div data-role="page" id="mappage">
 
 	<div data-role="header">
-		<h1>Multi-page</h1>
+		<h1>Ambiweather</h1>
 	</div><!-- /header -->
 
 	<div role="main" class="ui-content">
-		<h2>One</h2>
 
-		<p>I have an <code>id</code> of "one" on my page container. I'm first in the source order so I'm shown when the page loads.</p>
+        <div id="map"></div>
+    </div><!-- /content -->
 
-		<p>This is a multi-page boilerplate template that you can copy to build your first jQuery Mobile page. This template contains multiple "page" containers inside, unlike a single page template that has just one page within it.</p>
-		<p>Just view the source and copy the code to get started. All the CSS and JS is linked to the jQuery CDN versions so this is super easy to set up. Remember to include a meta viewport tag in the head to set the zoom level.</p>
-		<p>You link to internal pages by referring to the <code>id</code> of the page you want to show. For example, to <a href="#two">link</a> to the page with an <code>id</code> of "two", my link would have a <code>href="#two"</code> in the code.</p>
-
-		<h3>Show internal pages:</h3>
-		<p><a href="#two" class="ui-btn ui-shadow ui-corner-all">Show page "two"</a></p>
-		<p><a href="#popup" class="ui-btn ui-shadow ui-corner-all" data-rel="dialog" data-transition="pop">Show page "popup" (as a dialog)</a></p>
-	</div><!-- /content -->
-
-	<div data-role="footer" data-theme="a">
+	<div data-role="footer" data-theme="a" data-position="fixed">
 		<h4>Page Footer</h4>
 	</div><!-- /footer -->
 </div><!-- /page one -->
@@ -105,6 +90,7 @@
         <script type="text/javascript" src="cordova.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="leaflet-0.7.3/leaflet-src.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
