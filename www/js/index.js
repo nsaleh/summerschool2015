@@ -39,7 +39,7 @@ var app = {
             }).addTo(that.map);
             that.map.setView([49.469930,8.481660],13);
         });
-        $(document).on('click','#locatebtn',function(e){
+        $(document).on('tap','#locatebtn',function(e){
             that.locate();
         });
         $(document).on('pageshow', '#mappage', function(){
@@ -48,7 +48,7 @@ var app = {
             window.setTimeout(function(){that.map.invalidateSize()},2000);
             //that.locate();
         });
-        $(document).on('click','#takepicture',function(e){
+        $(document).on('tap','#takepicture',function(e){
             that.takepicture();
         });
 
